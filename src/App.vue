@@ -14,12 +14,20 @@
       </table>
     </div>
   </div>
+  <button v-on:click="doReset" type="button" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+    Reiniciar
+  </button>
+
+  <button v-on:click="doRemo" type="button" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+    Demonstração
+  </button>
 </template>
 
 <script>
 import ButtonOne from './components/button.vue'
 import get from 'lodash-es/get'
 import filter from 'lodash-es/filter'
+import options from './demoOptions.js'
 
 export default {
   components: {
@@ -32,13 +40,27 @@ export default {
     lines: [1,2,3,4,5,6,7],
     columns: [1,2,3,4,5,6,7],
     empty: {
-        4: [4]
-    },
-    table: [
-      1, 2, 3, 
-    ]
+      4: [4]
+    }
   }),
   methods: {
+    doReset () {
+      this.empty = {
+        4: [4]
+      }
+      this.currentSelect = {}
+    },
+    doRemo () {
+      let i = 0
+      const interval = setInterval(() => {
+        const { line, column, isNull } = options[i]
+        i=i+1
+        this.onSelect(line, column, isNull)
+        if (options.length <= i) {
+          clearInterval(interval)
+        }
+      }, 1000)
+    },
     onSelect(line, column, isNull) {
       const currentSelect = {
         [line]: column
