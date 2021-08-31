@@ -44,17 +44,6 @@ const middle = [
   },
 
   {
-    line: 5,
-    column: 5,
-    isNull: false
-  },
-  {
-    line: 5,
-    column: 3,
-    isNull: true
-  },
-
-  {
     line: 4,
     column: 4,
     isNull: false
