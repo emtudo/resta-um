@@ -18,8 +18,8 @@
     Reiniciar
   </button>
 
-  <button v-on:click="doRemo" type="button" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-    Demonstração
+  <button v-on:click="doWin" type="button" class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+    Ganhar
   </button>
 </template>
 
@@ -50,7 +50,8 @@ export default {
       }
       this.currentSelect = {}
     },
-    doRemo () {
+    doWin () {
+      this.doReset()
       let i = 0
       const interval = setInterval(() => {
         const { line, column, isNull } = options[i]
